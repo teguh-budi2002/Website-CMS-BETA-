@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+body {
+    background-color: rgb(235, 235, 235);
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.container-postingan {
+    width: 100%;
+    margin-top: 50px;
+    display: grid;
+    grid-template-areas: 'side article aside'
+                        'side article aside';
+    grid-template-columns: 0.1fr 2fr 1.2fr;
+    gap: 30px;
+
+}
+
+.article {
+    grid-area: article;
+    padding: 15px;
+    border-radius: 5px;
+
+}
+/* SideBar */
+.aside {
+    grid-area: aside;
+    font-family: 'Montserrat:600', sans-serif;
+}
+.aside kartu{
+    border-radius: 20px;
+
+}
+    /* .aside .btn-loading{
+
+    } */
+.aside p{
+    font-family: 'Montserrat:600', sans-serif;
+}
+
+/* Side Kiri */
+
+.side{
+    grid-area: side;
+    transform: translateX(-25%);
+    position: fixed;
+}
+
+
+@media screen and (max-width: 800px){
+    body {
+        padding: 0px;
+        background-color: rgb(235, 235, 235);
+
+    }
+    .container-postingan {
+        grid-template-areas: 'article'
+                             'aside';
+       grid-template-columns: repeat(1, 1fr);
+    }
+    .article{
+        grid-area: article;
+        width: 100%;
+    }
+    .aside kartu{
+        width: auto;
+    }
+    .diskusi{
+        padding: 20px;
+    }
+    .footer-post{
+        height: 200px;
+
+    }
+}

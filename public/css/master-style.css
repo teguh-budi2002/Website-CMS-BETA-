@@ -1,0 +1,28 @@
+.panah-bawah{
+    position: absolute;
+    bottom: 10%;
+    left: 47%;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}
+.kotak{
+    height: 20px;
+}
+.slide-show{
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .panah-bawah{
+        position: absolute;
+        bottom: -5%;
+        left: 40%;
+        height: 80px;
+        width: 80px;
+        cursor: pointer;
+    }
+    .carousel-item img{
+        height: 40%;
+    }
+}
