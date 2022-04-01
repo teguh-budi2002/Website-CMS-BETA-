@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
 .panah-bawah{
     position: absolute;
     bottom: 10%;
@@ -7,12 +8,18 @@
     cursor: pointer;
 }
 .kotak{
+    display: block;
     height: 20px;
 }
-.slide-show{
+.main-page{
     display: none;
 }
-
+#logo-hiasan{
+    height: 80%;
+}
+#tulisan-postingan{
+    text-align: start;
+}
 @media (max-width: 800px) {
     .panah-bawah{
         position: absolute;
@@ -22,7 +29,15 @@
         width: 80px;
         cursor: pointer;
     }
-    .carousel-item img{
-        height: 40%;
+    #logo-hiasan{
+        display: none;
+    }
+
+    #tulisan, #guh-tulisan {
+      display: none;
+    }
+    #tulisan-postingan{
+        text-align: center;
+        font-family: 'Hubballi', cursive;
     }
 }

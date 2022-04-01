@@ -7,7 +7,7 @@ body {
 
 .container-postingan {
     width: 100%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     display: grid;
     grid-template-areas: 'side article aside'
                         'side article aside';
@@ -20,6 +20,7 @@ body {
     grid-area: article;
     padding: 15px;
     border-radius: 5px;
+    overflow: hidden;
 
 }
 /* SideBar */
@@ -30,15 +31,13 @@ body {
 .aside kartu{
     border-radius: 20px;
 
-}
-    /* .aside .btn-loading{
+
 
     } */
 .aside p{
     font-family: 'Montserrat:600', sans-serif;
 }
 
-/* Side Kiri */
 
 .side{
     grid-area: side;
@@ -61,6 +60,7 @@ body {
     .article{
         grid-area: article;
         width: 100%;
+        overflow: hidden;
     }
     .aside kartu{
         width: auto;
@@ -68,8 +68,7 @@ body {
     .diskusi{
         padding: 20px;
     }
-    .footer-post{
-        height: 200px;
-
+    .artikel-side{
+        display: none;
     }
 }

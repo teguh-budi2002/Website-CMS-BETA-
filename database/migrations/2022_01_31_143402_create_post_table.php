@@ -17,9 +17,10 @@ class CreatePostTable extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('judul');
-            $table->string('author');
-            $table->text('body');
             $table->string('slug')->unique();
+            $table->string('author')->nullable();
+            $table->longText('body');
+            $table->text('excerpt');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

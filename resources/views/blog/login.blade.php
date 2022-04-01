@@ -1,5 +1,6 @@
+@extends('blog.index')
+@section('container')
 <section class="bg-gray-100">
-    @include('layouts.nav')
     <div class="container shadow-2xl shadow-black mt-5 py-5 mb-5">
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -16,7 +17,7 @@
                                         {{-- <p class="text-2xl">Hello, Selamat Datang!</p> --}}
                                         <p class="text-2xl font-md">Silahkan Login!</p>
                                     </div>
-                                    <form action="{{ url('/login/process')}}">
+                                    <form action="{{ url('/login/gae-post/process')}}">
                                         {{ @csrf_field() }} {{ method_field('POST') }}
                                         @include('sweetalert::alert')
 
@@ -75,3 +76,4 @@
         </div>
     </div>
 </section>
+@endsection

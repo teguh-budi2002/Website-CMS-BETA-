@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    public $table = 'category';
+    protected $table = 'category';
     protected $guarded = ['id'];
 
     // protected $with = ['posts'];

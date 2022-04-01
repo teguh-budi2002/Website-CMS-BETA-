@@ -1,0 +1,85 @@
+#icon-burger {
+    display: none;
+}
+
+.kolom-cari {
+    width: 150px;
+    padding: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 5px;
+    height: 35px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+.kolom-cari:focus {
+    width: 95%;
+    height: 35px;
+}
+
+.container.modalBlur > *:not(.kotak-modal){
+    -webkit-filter: blur(5px);
+}
+
+.modalAnimasi{
+    animation: animasiModal 1s;
+}
+
+@keyframes animasiModal{
+    0%{
+        transform: translateY(-40%);
+        opacity: 0.5;
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+
+@media (max-width: 800px) {
+    .bungkus-tombol {
+        position: fixed;
+        bottom: 2%;
+        right: 3%;
+        z-index: 99999;
+    }
+
+    .bungkus-tombol span {
+        width: 60px;
+        height: 60px;
+    }
+
+    #tombol-gelap {
+        position: fixed;
+        bottom: 15%;
+        right: 3%;
+        width: 60px;
+        height: 60px;
+        z-index: 9999;
+    }
+
+    #icon-burger {
+        position: absolute;
+        right: 5%;
+        display: block;
+    }
+    .kolom-cari {
+    width: 130px;
+    padding: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 8px;
+    height: 35px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+    .kolom-cari:focus {
+        width: 87%;
+        height: 35px;
+    }
+}

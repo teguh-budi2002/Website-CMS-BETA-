@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use App\Models\Post;
-use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -57,5 +58,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'HTML',
             'slug' => 'html'
         ]);
+
+        User::factory(1)->create();
     }
 }
