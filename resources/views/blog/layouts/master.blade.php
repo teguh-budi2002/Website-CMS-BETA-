@@ -1,6 +1,6 @@
 @extends('blog.index')
 @section('container')
-<section class="dark:bg-gray-800">
+<section class=" dark:bg-gray-800">
     <link rel="stylesheet" href="{{ asset('css/master-style.css') }}">
     <div class="bg-green-200 dark:bg-slate-700 border-b-2 border-green-300 dark:border-teal-400">
         <!--Hero-->
@@ -9,7 +9,7 @@
                 <!--Left Col-->
                 <div class="kata flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
 
-                    <h1 class="my-4 text-5xl dark:bg-teal-400 rounded-lg p-2 font-bold leading-tight font-mono text-slate-800 dark:text-gray-100 dark:shadow-2xl dark:shadow-teal-400" style=" text-shadow: 2px 2px 5px rgb(22, 24, 24);">
+                    <h1 class="my-4 text-5xl dark:bg-teal-400 rounded-lg p-2 font-bold leading-tight font-mono text-slate-800 dark:text-gray-100 dark:shadow-2xl dark:shadow-teal-400" id="text-glitch" style="text-shadow: 2px 2px 5px rgb(22, 24, 24);">
 
                     </h1>
                     <button class="relative mx-auto inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
@@ -36,7 +36,7 @@
         <div class="main-page">
             <div class="row">
                 <hr>
-                <div class="text-2xl font-semibold mt-8 mb-20 dark:text-teal-500" style="font-family: 'Hubballi', cursive;"
+                <div class="text-2xl font-semibold mt-8 mb-20 dark:text-gray-50" style="font-family: 'Hubballi', cursive;"
                     id="tulisan-postingan">
                     <p class="tracking-wide text-6xl">Postingan Terbaru!</p>
                     <p class="">Banyak artikel yang mungkin belum kamu baca nih...</p>

@@ -19,7 +19,7 @@ class DashboardPostController extends Controller
     public function index(Post $post)
     {
         return view('dashboard.posts.index', [
-            'posts' => $post->with(['category'])->get()
+            'posts' => $post->with('category')->get()
         ]);
     }
 
@@ -49,17 +49,16 @@ class DashboardPostController extends Controller
             'excerpt' => 'required|max:255',
             'slug' => 'required|unique:post',
             'author' => 'required',
-            'category_id' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'image|file|max:1024',
+            'category_id' => 'required'
         ]);
 
-       Post::create($validate, [
-           'judul' => $request->judul,
-           'slug' => $request->slug,
-           'author' => $request->author,
-           'body' => $request->body,
-           'excerpt' => $request->excerpt,
-       ])->save();
+        if($request->file('image')){
+            $validate['image'] = $request->file('image')->store('/public/post-images');
+        }
+
+       Post::create($validate)->save();
        return redirect('/gae-post/buat/postingan')->with('sukses', 'Postingan sukses di upload bro!');
     }
 
@@ -101,7 +100,7 @@ class DashboardPostController extends Controller
     {
         $rules = [
             'judul' => 'required|max:255',
-
+            'image' => 'image|file|max:1024',
             'category_id' => 'required',
             'body' => 'required'
         ];
@@ -110,7 +109,16 @@ class DashboardPostController extends Controller
         }
         $validasi = $request->validate($rules);
 
-        Post::where('id', $postingan->id)
+        if($request->file('image')){
+
+            if($request->oldimage){
+                Storage::delete($request->oldimage);
+            }
+
+            $validasi['image'] = $request->file('image')->store('/public/post-images');
+        }
+
+               Post::where('id', $postingan->id)
               ->update($validasi);
         return redirect('/gae-post/buat/postingan')->with('sukses', 'Postingan sukses di update bro!');
     }
@@ -123,6 +131,9 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $postingan)
     {
+        if($postingan->image){
+            Storage::delete($postingan->image);
+        }
         Post::destroy($postingan->id);
         return redirect('/gae-post/buat/postingan')->with('sukses', 'Postingan sukses di hapus bro!');
     }

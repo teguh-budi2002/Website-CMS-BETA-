@@ -1,0 +1,8 @@
+#gambar-atas{
+    max-height: 600px
+}
+@media screen and (max-width: 800px){
+#gambar-atas{
+    max-height: 300px
+}
+}

@@ -23,8 +23,23 @@
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/base16/dracula.min.css">
 {{-- End Highlight --}}
-
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/unreset.css') }}">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+      darkMode: 'class',
+      theme: {
+          extend: {
+              colors: {
+
+              },
+          },
+      },
+      plugins: [
+    require('@tailwindcss/typography'),
+    ],
+  };
+</script>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;

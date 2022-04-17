@@ -10,21 +10,21 @@
 <script src="https://cdn.jsdelivr.net/combine/gh/jablonczay/code-box-copy/clipboard/clipboard.min.js,gh/jablonczay/code-box-copy/code-box-copy/js/code-box-copy.min.js"></script>
 <!-- Cod Box Copy end -->
 <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <div class="container pt-20 container-postingan dark:bg-slate-800">
+  <div class="container pt-20 container-postingan dark:bg-slate-800">
 
-        <article class="article bg-gray-50 border-1 border-slate-400 shadow-xl dark:text-gray-50  font-sans leading-relaxed dark:bg-gray-700 dark:shadow-xl dark:shadow-gray-600">
-            <div class="mt-3 mb-3 bg-gray-300 rounded-lg p-2">
-                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+         <article class="article bg-gray-50 border-1 border-slate-400 shadow-xl dark:text-gray-50  font-sans leading-relaxed dark:bg-gray-700 dark:shadow-xl dark:shadow-gray-600 unreset">
+            <div class="mt-3 mb-3 bg-gray-300 rounded-lg p-2" id="badge-penunjuk">
+                <ol class="inline-flex items-center space-x-1 ">
                     <li class="inline-flex items-center">
                       <a href="{{ url('/') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-700 dark:hover:text-white">
-                        <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                        Home
+                        <svg class=" w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+
                       </a>
                     </li>
                     <li>
                       <div class="flex items-center">
                         <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                        <a href="{{ url('/halaman-post') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-700 dark:hover:text-white">Article</a>
+                        <a href="{{ url('/halaman-post') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-700 dark:hover:text-white">Artikel</a>
                       </div>
                     </li>
                     <li aria-current="page">
@@ -35,14 +35,22 @@
                     </li>
                   </ol>
             </div>
-            <p class="text-4xl mb-10 font-semibold">{{ $post->judul }}</p>
-            <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="w-full rounded-lg h-80 mb-5" alt="gambar-konten">
-            <p class="indent-10">
+            <p class="text-4xl shadow-gray-400 font-semibold">{{ $post->judul }}</p>
+            <hr class="dark:text-gray-50 mt-3">
+            <div class="flex justify-start items-center flex-nowrap badge-tag mt-2 space-x-2 mb-8">
+                <p class="mr-2">Tags:</p>
+                <a rel="tag" href="/categories/{{ $post->category->slug }}">
+                    <span class="bg-gray-200 hover:bg-gray-400 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-500 dark:hover:bg-gray-400 dark:text-gray-300">#{{ $post->category->name }}
+                    </span>
+                </a>
+            </div>
+            <img src="{{ asset('storage/' . $post->image) }}" class="w-full rounded-lg mb-5" alt="gambar-konten" id="foto-konten">
+
                 {!! $post->body !!}
-            </p>
-            <hr class="mt-10 mb-10">
+
+             <hr class="mt-10 mb-10">
             {{-- profile card --}}
-            <div class="bg-gray-50 dark:bg-gray-600 rounded-lg shadow-md dark:shadow-lg dark:shadow-gray-600 mb-3"
+             <div class="bg-gray-50 dark:bg-gray-600 rounded-lg shadow-lg shadow-gray-400 dark:shadow-lg dark:shadow-gray-600 mb-3"
                 id="profile-card">
                 <div class=" rounded-lg p-6">
                     <div class="flex items-center space-x-6 mb-4">
@@ -69,7 +77,7 @@
                         {{ csrf_field() }} {{ method_field('POST') }}
                         <div class="alert alert-success alert-dismissible fade show d-none pesan-alert" role="alert">
                             <strong>Terimakasih!</strong> Pesan anda sudah diterima.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="close ml-3" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -112,20 +120,20 @@
         <p class="py-2.5 text-lg font-bold text-center dark:text-gray-50">Artikel Terbaru</p>
         <hr class="dark:text-gray-50">
     </div>
-    @foreach ($popular as $items)
+    @foreach ($posts as $items)
     <div class="card-body border-l-4 mt-2 rounded-r-lg border-blue-600 bg-gray-300 dark:bg-gray-700 flex flex-nowrap">
-        <img src="https://source.unsplash.com/500x400?" class="text-left w-20 mr-2 rounded-md" alt="gambar-artikel">
+        <img src="{{ asset('storage/' . $items->category->imageCategory) }}" class="text-left mr-2 rounded-md" alt="gambar-artikel" style="width: 60px;height: 60px;">
         <a class="no-underline text-gray-800 dark:text-gray-50 dark:hover:text-blue-400 hover:text-gray-700"
         href="{{ url('/post/'.$items->slug) }}"><p class="font-semibold font-sans text-lg">{{ $items->judul }}</p></a>
     </div>
     @endforeach
-</div>
-        </aside>
     </div>
+        </aside>
+</div>
 
     <div class="diskusi container">
     <div class="row">
-        <div class="col-md-10 mx-auto bg-gray-50 dark:bg-gray-700 mt-5 p-4 rounded-lg">
+        <div class="col-md-10 mx-auto bg-gray-50 dark:bg-gray-200 mt-5 p-4 rounded-lg">
             <div id="disqus_thread" class="mt-3"></div>
             <script>
                 /**
@@ -157,11 +165,11 @@
             <div class="row">
                 @foreach ($posts as $post)
                 <div class="col-md-4 mt-4">
-                    <div class="card dark:shadow-2xl dark:bg-gray-700 dark:shadow-gray-600">
+                    <div class="card rounded-xl shadow-xl shadow-gray-400 dark:shadow-2xl dark:bg-gray-700 dark:shadow-gray-600">
                         <a class="no-underline text-blue-300 hover:text-blue-500"
                             href=""><img
-                                src="https://source.unsplash.com/500x400?{{ $post->category->name }}"
-                                class="card-img-top p-2" alt="gambarmane"></a>
+                                src="{{ asset('storage/' . $post->image) }}"
+                                class="card-img-top rounded-t-lg p-2" alt="gambarmane"></a>
                         <div class="card-body">
                             <h5 class="card-title dark:text-gray-50 font-semibold">{{ $post->judul }}</h5>
                             <p class="card-text dark:text-gray-50  text-sm">{!! $post->excerpt !!}</p>
@@ -186,6 +194,7 @@
     </div>
 </div>
 @include('blog.layouts.footer')
+<script src="{{ mix('js/app.js') }}"></script>
 
 <script>
     jQuery(document).ready(function($){

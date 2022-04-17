@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
 
-	public function index(Category $category){
+	public function index(){
 
-     $categories = $category->get();
-
-		return view('blog.category-posts', compact('categories'));
+		return view('blog.category-posts', [
+			'title' => 'Kategori',
+			'categories' => Category::get(),
+		]);
 
 	}
 }

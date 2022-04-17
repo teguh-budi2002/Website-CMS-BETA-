@@ -8,8 +8,10 @@ use Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use DashboardPostController;
+use CategoryResource;
 
 
 /*
@@ -36,8 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/gae-post', function(){
         return view('dashboard.master');
     });
+
+    // Postingan
     Route::get('/gae-post/buat/postingan/checkSlug', 'DashboardPostController@checkSlug');
     Route::resource('/gae-post/buat/postingan', DashboardPostController::class);
+
+    // Kategori
+    Route::resource('/gae-kategori/kategori', CategoryResource::class);
+    Route::put('/gae-kategori/kategori/', 'CategoryResource@update')->name('category.edit');
 });
 
 
@@ -47,21 +55,14 @@ route::get('/profile', 'PostController@profile');
 route::get('/', 'PostController@index')->name('home');
 
 Route::get('/halaman-post', 'PostController@indexPost');
-Route::get('/post/{post:slug}', function(Post $post) {
-    return view('blog.postingan.view-post', [
-        'post' => $post,
-        'posts' => $post->with('category')->limit(6)->get(),
-        'popular' => $post->orderBy('judul', 'asc')->limit(5)->get(),
-    ]);
-});
+Route::get('/post/{post:slug}', 'PostController@post');
 
 Route::get('/categories', 'CategoryController@index');
-Route::get('/post/categories/{category:slug}', function(Category $category) {
+Route::get('/categories/{category:slug}', function(Category $category) {
     return view('blog.categories', [
         'title' => $category->name,
         'category' => $category->name,
-        'author' => $category->posts,
-        'posts' => Post::with('category')->paginate(8),
+        'categories' => $category->posts()->paginate(9),
     ]);
 
 });

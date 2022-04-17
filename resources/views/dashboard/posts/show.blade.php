@@ -2,11 +2,16 @@
 
 @section('container')
 <div class="container bg-gray-200 p-4 mt-10 container-postingan dark:bg-slate-800">
-    <article class="article mt-2 bg-gray-50 shadow-xl dark:bg-gray-50">
+    <article class="article mt-2 bg-gray-50 shadow-xl dark:bg-gray-50 unreset">
         <a class="btn btn-info mb-2" href="{{ url('/gae-post/buat/postingan') }}">Back to all post!</a>
         <div class="p-3 dark:text-gray-800 font-sans leading-relaxed">
+            @if ($post->image)
+            <img src="{{ asset('storage/' . $post->image) }}" alt="konten-image">
+            @else
+            <img src="https://source.unsplash.com/1200x400?" alt="konten-image">
+            @endif
             <p class="text-4xl font-semibold mt-2 mb-2 text-start">{{ $post->judul }}</p>
-            <p class="indent-10">
+            <p class="">
                 {!! $post->body !!}
             </p>
         </div>

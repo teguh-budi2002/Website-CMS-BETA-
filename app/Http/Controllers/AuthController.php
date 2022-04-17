@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Hash;
 use Session;
-use Alert;
-use App\Models\Post;
-use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -65,7 +62,6 @@ class AuthController extends Controller
             'username' => 'required|min:5|max:155|unique:user',
             'email' => 'required|email:dns|unique:user',
             'password' => 'required|min:5',
-            // 'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $data = $request->all();

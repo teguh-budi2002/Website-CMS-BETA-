@@ -16,9 +16,10 @@ class CreatePostTable extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id');
-            $table->string('judul');
+            $table->string('judul')->unique();
             $table->string('slug')->unique();
-            $table->string('author')->nullable();
+            $table->string('author');
+            $table->string('image')->nullable();
             $table->longText('body');
             $table->text('excerpt');
             $table->timestamp('published_at')->nullable();

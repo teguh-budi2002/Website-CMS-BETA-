@@ -12,6 +12,10 @@
             <span data-feather="file"></span>
             My Post
           </a>
+          <a class="nav-link  {{ Request::is('/gae-kategori/kategori') ? 'active' : '' }}" href="{{ url('/gae-kategori/kategori') }}">
+            <span data-feather="file"></span>
+            My Category
+          </a>
         </li>
       </ul>
     </div>

@@ -1,20 +1,38 @@
 @extends('dashboard.partial.main')
 
 @section('container')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
+
+
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.min.js"></script>
+<style>
+    /* For summernote override unordered and order list */
+.note-editable ul{
+  list-style: disc !important;
+  margin: 10px;
+  list-style-position: inside !important;
+}
+
+.note-editable ol {
+  list-style: decimal !important;
+  margin: 10px;
+  list-style-position: inside !important;
+}
+</style>
 <div class="mt-4">
-    <form method="post" action="{{ url('gae-post/buat/postingan/' . $post->slug) }}">
+    <form method="post" action="{{ url('gae-post/buat/postingan/' . $post->slug) }}" enctype="multipart/form-data">
         @method('put')
         {{ csrf_field() }}
         <div class="row">
@@ -69,11 +87,27 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Edit Image</label>
+                    <input type="hidden" name="oldimage" value={{ $post->image }}>
+                    @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" class="img-preview mb-2 rounded-md img-fluid">
+                    @else
+                    <img class="img-preview mb-2 rounded-md img-fluid">
+                    @endif
+                    <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" onchange="imgPriview()">
+                    @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
                 <div class="mb-3">
                     <textarea class="form-control" id="summernote" name="body">{{ old('body', $post->body) }}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-success text-slate-700">Edit Postingan!</button>
+                <button type="submit" class="btn btn-success mb-10 text-slate-700">Edit Postingan!</button>
             </div>
         </div>
     </form>
@@ -82,7 +116,7 @@
     $(document).ready(function () {
         $('#summernote').summernote({
             tabsize: 2,
-            height: 100
+            height: 400
         });
     });
 
@@ -101,6 +135,21 @@
     //         preslug = preslug.replace(/ /g,"-");
     //         slug.value = preslug.toLowerCase();
     //     });
+
+    function imgPriview(){
+            const image = document.querySelector('#image');
+            const imagePreview = document.querySelector('.img-preview');
+
+            imagePreview.style.display = "block";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREevent) {
+            imagePreview.src = oFREevent.target.result;
+            }
+        }
+
 
 </script>
 @endsection

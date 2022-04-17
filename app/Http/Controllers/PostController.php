@@ -19,7 +19,7 @@ class PostController extends Controller
     public function profile(){
 
         return view('blog.profile', [
-            'title' => 'About Me!',
+            'title' => 'Author',
             'slug' => 'profile',
         ]);
     }
@@ -28,8 +28,17 @@ class PostController extends Controller
 
         return view('blog.postingan.post-home',
         [
-            'title' => 'Post Page!',
+            'title' => 'Halaman Postingan!',
             'posts' => Post::with('category')->latest()->filter(request(['search', 'category']))->paginate(7),
+        ]);
+    }
+
+    public function post(Post $post){
+        return view('blog.postingan.view-post', [
+            'title' => $post->judul,
+            'post' => $post,
+            'posts' => $post->with('category')->latest()->limit(6)->get(),
+            // 'popular' => $post->with('category')->orderBy('judul', 'asc')->limit(5)->get(),
         ]);
     }
 }
