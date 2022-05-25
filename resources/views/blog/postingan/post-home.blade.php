@@ -65,7 +65,7 @@
                 </div>
                 <span class="text-gray-800 dark:text-gray-800 text-xs font-medium flex justify-center items-center py-5  dark:bg-gray-50 dark:text-gray-50">
                     <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
-                    {{ $posts[0]->created_at->diffForHumans() }}
+                    {{ $posts[0]->created_at->format('Y F, d') }}
                   </span>
             </div>
             </div>
@@ -80,7 +80,7 @@
                         <div class="position-absolute px-3 py-2 rounded-l-lg text-white text-xs md:text-sm px-6"
                             style="background-color: rgba(0, 0, 0, 0.7)">
                             <a class="text-white no-underline"
-                                href="/post/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                href="categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
                         </div>
                         <a class="no-underline text-blue-300 hover:text-blue-500"
                             href="{{ url('/post/'.$post->slug) }}">
@@ -110,7 +110,7 @@
                         </div>
                         <span class="text-gray-800 text-xs font-medium flex justify-center items-center py-5 dark:bg-gray-50 dark:text-gray-800">
                             <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
-                            {{ $post->created_at->diffForHumans() }}
+                            {{ $post->created_at->format('Y F, d') }}
                           </span>
                     </div>
                 </div>

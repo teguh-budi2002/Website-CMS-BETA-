@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('/css/nav-style.css') }}">
     <nav
-        class="navbar navbar-expand-lg navbar-dark bg-gray-50 dark:bg-gray-800 shadow-md shadow-gray-500 dark:border-b-2 dark:border-teal-500">
+        class="navbar navbar-expand-lg navbar-dark bg-gray-50 dark:bg-gray-800 shadow-md shadow-gray-500 dark:border-b-2 dark:border-gray-50">
         <div class="container">
         <div class="flex justify-center items-center">
                 {{-- <img src="{{ asset('/img/logo-web-2.png') }}" class="w-16 h-16 mr-3" alt="logo-website"> --}}
@@ -8,7 +8,7 @@
                 <div class="text-4xl text-gray-900 dark:text-white" id="logo-web" title="guhcoding">guhcoding</div>
             </a>
         </div>
-            <button class="pb-3" id="button-hamburger" type="button" data-bs-toggle="collapse"
+            <button class="mb-3" id="button-hamburger" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span><i class="fas fa-bars text-gray-900 dark:text-white font-bold" id="icon-burger"></i></span>
@@ -16,36 +16,36 @@
 
             <div class="collapse navbar-collapse selektor" id="navbarTogglerDemo01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item transition ease-in duration-300 hover:scale-75 hover:bg-gray-500 hover:rounded-lg">
                         <a class="nav-link {{ Request::is('halaman-post')? 'active' : '' }} font-medium text-xl no-underline"
-                            href="{{ url('/halaman-post') }}">
+                            href="{{ url('/halaman-post') }}"><i class="bi bi-book text-gray-400 hover:text-gray-300 dark:text-gray-50 dark:hover:text-gray-200"></i>
                             <span
-                                class="text-gray-400 hover:text-gray-300 dark:text-teal-400 dark:hover:text-teal-200 p-2"
-                                style="font-family: 'Balsamiq Sans', cursive;">ARTIKEL</span>
+                                class="text-gray-400 hover:text-gray-300 dark:text-gray-50 dark:hover:text-gray-200 p-2"
+                                style="font-family: 'Balsamiq Sans', cursive;">Article</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item transition ease-in duration-300 hover:scale-75 hover:bg-gray-500 hover:rounded-lg">
                         <a class="nav-link {{ Request::is('categories*')? 'active' : '' }} font-medium text-xl no-underline"
-                            href="{{ url('/categories') }}">
+                            href="{{ url('/categories') }}"><i class="bi bi-list-task text-gray-400 hover:text-gray-300 dark:text-gray-50 dark:hover:text-gray-200"></i>
                             <span
-                                class="text-gray-400 hover:text-gray-300 dark:text-teal-400 dark:hover:text-teal-200 p-2"
-                                style="font-family: 'Balsamiq Sans', cursive;">KATEGORI</span>
+                                class="text-gray-400 hover:text-gray-300 dark:text-gray-50 dark:hover:text-gray-200 p-2"
+                                style="font-family: 'Balsamiq Sans', cursive;">Kategori</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item transition ease-in duration-300 hover:scale-75 hover:bg-gray-500 hover:rounded-lg">
                         <a class="nav-link {{ Request::is('profile')? 'active' : '' }} font-medium text-xl no-underline"
-                            href="{{ url('/profile') }}">
+                            href="{{ url('/profile') }}"><i class="bi bi-person-check text-gray-400 hover:text-gray-300 dark:text-gray-50 dark:hover:text-gray-200"></i>
                             <span
-                                class="text-gray-400 hover:text-gray-300 dark:text-teal-400 dark:hover:text-teal-200 p-2"
-                                style="font-family: 'Balsamiq Sans', cursive;">AUTHOR</span>
+                                class="text-gray-400 hover:text-gray-300 dark:text-gray-50 dark:hover:text-gray-200 p-2"
+                                style="font-family: 'Balsamiq Sans', cursive;">Author</span>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="bungkus-tombol">
                 <span
-                    class="flex items-center justify-center p-2 bg-green-500 dark:bg-slate-500 dark:hover:bg-slate-700 h-10 w-10 hover:bg-green-700 rounded-full cursor-pointer text-white"
-                    id="tombol-cari"><i class="bi bi-search"></i></span>
+                    class="flex items-center justify-center p-2 bg-green-500 dark:bg-gray-200 dark:hover:bg-gray-400 h-10 w-10 hover:bg-green-700 rounded-full cursor-pointer text-white"
+                    id="tombol-cari"><i class="bi bi-search dark:text-slate-800"></i></span>
             </div>
             <div class="px-2">
                 <span

@@ -40,7 +40,7 @@
     <div class="container">
         <div class="row">
             <div class="col mb-5 mx-auto">
-                <p class="font-semibold sm:text-center text-2xl dark:text-gray-50" id="guh-tulisan">About Website!</p>
+                <p class="font-semibold text-2xl text-center dark:text-gray-50" id="guh-tulisan">Tentang Website!</p>
                 <p class="font-serif text-lg leading-relaxed dark:text-gray-50" id="tulisan">GuhCoding.com merupakan website sederhana yang menyajikan beragam
                     tutorial
                     dan dibuat menggunakan framework PHP yang sangat popular pada saat ini yaitu Laravel, Saya

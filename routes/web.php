@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
 use Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\Authenticate;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AuthController;
-use DashboardPostController;
+use App\Models\Post;
 use CategoryResource;
+use App\Models\Category;
+use DashboardPostController;
+use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
     // Kategori
     Route::resource('/gae-kategori/kategori', CategoryResource::class);
     Route::put('/gae-kategori/kategori/', 'CategoryResource@update')->name('category.edit');
+    // Tags
+    Route::get('/gae-tags/tags', 'TagsController@index');
+    Route::post('gae-tags/tags/kirim', 'TagsController@create');
 });
 
 
@@ -56,6 +59,7 @@ route::get('/', 'PostController@index')->name('home');
 
 Route::get('/halaman-post', 'PostController@indexPost');
 Route::get('/post/{post:slug}', 'PostController@post');
+
 
 Route::get('/categories', 'CategoryController@index');
 Route::get('/categories/{category:slug}', function(Category $category) {

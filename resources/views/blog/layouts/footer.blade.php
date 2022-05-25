@@ -1,5 +1,5 @@
 
-<footer class="bg-gray-200 dark:bg-gray-700 border-t-2 border-gray-300 dark:border-teal-500">
+<footer class="bg-gray-200 dark:bg-gray-700 border-t-2 border-gray-300 dark:border-gray-50">
     <div class="p-8">
         <div class="flex flex-nowrap justify-center space-x-4 ">
             <div>

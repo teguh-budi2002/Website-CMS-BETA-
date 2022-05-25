@@ -31,7 +31,6 @@ class AuthController extends Controller
 
             return redirect()->intended('/gae-post');
         }
-        alert::warning('Akun tidak ditemukan!');
 
         return redirect()->back();
     }
@@ -68,7 +67,7 @@ class AuthController extends Controller
         $check = $this->create($data);
 
         if ($check) {
-            alert::success('Selamat Akun Anda Berhasil Dibuat!');
+            // alert::success('Selamat Akun Anda Berhasil Dibuat!');
         }
         return redirect('/login/gae-post');
     }

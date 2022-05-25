@@ -17,6 +17,8 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.min.js"></script>
+{{-- select2 --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     /* For summernote override unordered and order list */
 .note-editable ul{
@@ -79,7 +81,7 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
                 </div>
                 <div class="mt-3 mb-3">
                     <label for="category" class="mb-2">Category</label>
-                    <select class="form-select" id="categor" name="category_id">
+                    <select class="form-select js-example-basic-multiple" id="category" name="category_id">
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}"
                             {{ old('category_id', $category->id) == $category->id ? ' selected' : ' ' }}>
@@ -112,12 +114,14 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
         </div>
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#summernote').summernote({
             tabsize: 2,
             height: 400
         });
+        $('.js-example-basic-multiple').select2();
     });
 
 </script>

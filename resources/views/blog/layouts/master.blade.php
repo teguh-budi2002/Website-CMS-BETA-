@@ -44,7 +44,7 @@
                 @foreach( $posts as $post)
                 <div class="col-lg-3 mb-5">
                     <div class="card dark:bg-gray-700 dark:text-gray-50 dark:shadow-gray-600 shadow-xl w-full" id="card-header">
-                        <img src="https://source.unsplash.com/500x400?" class="card-img-top" alt="img-post">
+                        <img class="w-full" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image }}">
                         <div class="card-body" id="card-body">
                             <h5 class="card-title  font-bold">{{ $post->judul }}</h5>
                             <p class="card-text text-sm mb-2">{!! $post->excerpt !!}</p>

@@ -90,7 +90,7 @@ class CategoryResource extends Controller
         $rules = ([
             'name' => 'required',
             'slug' => 'required',
-            'imageCategory' => 'image|file|max:6000'
+            'imageCategory' => 'image|file|max:6048'
         ]);
         $validated = $request->validate($rules);
             if($request->imageCategory){

@@ -38,7 +38,7 @@ class PostController extends Controller
             'title' => $post->judul,
             'post' => $post,
             'posts' => $post->with('category')->latest()->limit(6)->get(),
-            // 'popular' => $post->with('category')->orderBy('judul', 'asc')->limit(5)->get(),
+            'randoms' => $post->with('category')->inRandomOrder()->limit(5)->get(),
         ]);
     }
 }

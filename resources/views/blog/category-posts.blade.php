@@ -23,21 +23,22 @@
         </div>
 
       </header>
+      <div class="container">
         <div class="row">
             @foreach ($categories as $category)
-            <div class="col-md-4">
-                <div class="card rounded-t-lg p-2 mt-4 mb-5">
-                    <div class="card-image">
-                      @if ($category->imageCategory)
-                      <img class="w-full" style="max-height: 400px;overflow: hidden;" src="{{ asset('storage/' . $category->imageCategory) }}" alt="{{ $category->imageCategory }}">
-                      @else
-                      <img class="w-full"
-                          src="https://source.unsplash.com/1200x400?{{ $category->name }}" alt="gambar">
-                      @endif
-                        <div class="mt-3">
-                        <span class="card-title text-2xl text-gray-800 uppercase">{{ $category->name }}</span>
-                        </div>
-                    </div>
+            <div class="col-md-3">
+              <div class="card-image mt-5 flex justify-center">
+                @if ($category->imageCategory)
+                <a href="{{ url('/categories/'. $category->slug) }}"><img class="max-w-32 rounded-full max-h-32" id="gambar-thumb" style="box-shadow: 3px 3px 2px rgba(0,0,0,0.5);"  src="{{ asset('storage/' . $category->imageCategory) }}" alt="{{ $category->imageCategory }}"></a>
+                @else
+                <img class="w-full"
+                    src="https://source.unsplash.com/1200x400?{{ $category->name }}" alt="gambar">
+                @endif
+              </div>
+              <div class="mt-3 text-center">
+              <a href="{{ url('/categories/'. $category->slug) }}"><span class="card-title text-2xl text-gray-700 hover:text-gray-500 dark:text-gray-50 font-sans font-semibold">{{ $category->name }}</span></a>
+              </div>
+                {{-- <div class="card rounded-t-lg p-2 mt-4 mb-5">
                     <div class="flex items-center justify-start mt-2">
                       <a href="{{ url('/categories/'. $category->slug) }}"
                           class="no-underline inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -50,11 +51,12 @@
                           </svg>
                       </a>
                   </div>
-                </div>
+                </div> --}}
               </div>
             @endforeach
         </div>
     </div>
+  </div>
     @include('blog.layouts.footer')
 </section>
 @endsection

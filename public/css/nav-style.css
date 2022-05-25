@@ -81,7 +81,7 @@
     transition: width 0.4s ease-in-out;
 }
 
-/* When the input field gets focus, change its width to 100% */
+
 .kolom-cari:focus {
     width: 95%;
     height: 35px;
@@ -106,8 +106,8 @@
 }
 .active{
    text-shadow: #BDBDC7;
-   background-color: #3E3E43;
-   border-radius: 30px;
+   background-color: rgb(107 114 128);
+   border-radius: 8px;
 }
 
 @media (max-width: 800px) {

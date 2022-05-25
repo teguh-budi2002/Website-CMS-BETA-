@@ -12,30 +12,30 @@
 <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
   <div class="container pt-20 container-postingan dark:bg-slate-800">
 
-         <article class="article bg-gray-50 border-1 border-slate-400 shadow-xl dark:text-gray-50  font-sans leading-relaxed dark:bg-gray-700 dark:shadow-xl dark:shadow-gray-600 unreset">
-            <div class="mt-3 mb-3 bg-gray-300 rounded-lg p-2" id="badge-penunjuk">
-                <ol class="inline-flex items-center space-x-1 ">
-                    <li class="inline-flex items-center">
+         <article class="article bg-gray-50 border-1 border-slate-400 shadow-xl text-gray-700 dark:text-gray-50  font-sans leading-loose dark:bg-gray-700 dark:shadow-xl dark:shadow-gray-600 unreset">
+            <div class="mt-3 mb-3 bg-gray-300 rounded-lg p-2 flex justify-center" id="badge-penunjuk">
+                <div class="inline-flex items-center space-x-1 ">
+                    <div class="inline-flex items-center list-none">
                       <a href="{{ url('/') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-700 dark:hover:text-white">
                         <svg class=" w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-
                       </a>
-                    </li>
-                    <li>
-                      <div class="flex items-center">
+                    </div>
+                    <div>
+                      <div class="flex items-center list-none">
                         <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                         <a href="{{ url('/halaman-post') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-700 dark:hover:text-white">Artikel</a>
                       </div>
-                    </li>
-                    <li aria-current="page">
+                    </div>
+                    <div aria-current="page">
                       <div class="flex items-center">
                         <svg class="w-6 h-6 text-gray-800 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                         <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-700">{{ $post->judul }}</span>
                       </div>
-                    </li>
-                  </ol>
+                    </div>
+                </div>
             </div>
-            <p class="text-4xl shadow-gray-400 font-semibold">{{ $post->judul }}</p>
+            <p class="text-4xl text-slate-800 dark:text-gray-50 shadow-gray-400 font-semibold">{{ $post->judul }}</p>
+            <p><span class="dark:text-gray-400">Diposting pada:</span> <span class="dark:text-gray-50 text-gray-700 font-semibold">{{ $post->created_at->format('Y F, d') }}</span> <span class="dark:text-gray-400">by</span> <span class="text-gray-700 font-semibold dark:text-gray-50">{{ $post->author }}</span></p>
             <hr class="dark:text-gray-50 mt-3">
             <div class="flex justify-start items-center flex-nowrap badge-tag mt-2 space-x-2 mb-8">
                 <p class="mr-2">Tags:</p>
@@ -120,7 +120,7 @@
         <p class="py-2.5 text-lg font-bold text-center dark:text-gray-50">Artikel Terbaru</p>
         <hr class="dark:text-gray-50">
     </div>
-    @foreach ($posts as $items)
+    @foreach ($randoms as $items)
     <div class="card-body border-l-4 mt-2 rounded-r-lg border-blue-600 bg-gray-300 dark:bg-gray-700 flex flex-nowrap">
         <img src="{{ asset('storage/' . $items->category->imageCategory) }}" class="text-left mr-2 rounded-md" alt="gambar-artikel" style="width: 60px;height: 60px;">
         <a class="no-underline text-gray-800 dark:text-gray-50 dark:hover:text-blue-400 hover:text-gray-700"
@@ -131,7 +131,8 @@
         </aside>
 </div>
 
-    <div class="diskusi container">
+
+    <div class="diskusi container mb-10">
     <div class="row">
         <div class="col-md-10 mx-auto bg-gray-50 dark:bg-gray-200 mt-5 p-4 rounded-lg">
             <div id="disqus_thread" class="mt-3"></div>
@@ -156,7 +157,7 @@
     </div>
 </div>
 
-    <div class="container">
+    {{-- <div class="container">
     <div class="footer-post">
         <div class="mt-5">
             <p class="text-3xl font-sans font-semibold text-center dark:text-teal-500">POSTINGAN MENARIK LAINYA!</p>
@@ -192,7 +193,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @include('blog.layouts.footer')
 <script src="{{ mix('js/app.js') }}"></script>
 

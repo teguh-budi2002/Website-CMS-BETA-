@@ -58,7 +58,30 @@ class DashboardPostController extends Controller
             $validate['image'] = $request->file('image')->store('/public/post-images');
         }
 
-       Post::create($validate)->save();
+        // $validate['category_id'] = implode('', $request->category_id);
+        Post::create($validate);
+
+        //    Post::insert([
+        //        'judul' => $request->judul,
+        //         'excerpt' => $request->excerpt,
+        //         'slug' => $request->slug,
+        //         'author' => $request->author,
+        //         'body' => $request->body,
+        //         'image' => $request->image,
+        //         'category_id' => $request->category_id]);
+
+    //    $arr =  [
+    //           'judul' => $data['judul'],
+    //           'excerpt' => $data['excerpt'],
+    //           'slug' => $data['slug'],
+    //           'author' => $data['author'],
+    //           'body' => $data['body'],
+    //           'image' => $data['image'],
+    //           'category_id' => $data['category_id']
+    //        ];
+
+
+    //    $reqInput->category()->attach($request['category_id']);
        return redirect('/gae-post/buat/postingan')->with('sukses', 'Postingan sukses di upload bro!');
     }
 
@@ -100,8 +123,9 @@ class DashboardPostController extends Controller
     {
         $rules = [
             'judul' => 'required|max:255',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:6048',
             'category_id' => 'required',
+            'excerpt' => 'required',
             'body' => 'required'
         ];
         if($request->slug != $postingan->slug){
