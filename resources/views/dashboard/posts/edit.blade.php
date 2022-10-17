@@ -84,7 +84,7 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
                     <select class="form-select js-example-basic-multiple" id="category" name="category_id">
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}"
-                            {{ old('category_id', $category->id) == $category->id ? ' selected' : ' ' }}>
+                            {{ old('category_id', $category->id) === $post->category_id ? ' selected' : ' ' }}>
                             {{ $category->name }}</option>
                         @endforeach
                     </select>
@@ -92,9 +92,9 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Edit Image</label>
-                    <input type="hidden" name="oldimage" value={{ $post->image }}>
+                    <input type="hidden" name="oldimage" value={{  $post->image }}>
                     @if ($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" class="img-preview mb-2 rounded-md img-fluid">
+                    <img src="{{ asset('storage/public/post-images/' . $post->image) }}" class="img-preview mb-2 rounded-md img-fluid">
                     @else
                     <img class="img-preview mb-2 rounded-md img-fluid">
                     @endif

@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index(Post $post){
 
-        $posts = $post->latest()->limit(8)->get();
+        $posts = $post->latest()->limit(9)->get();
 
         return view('blog.layouts.master', compact('posts'));
     }
@@ -29,7 +29,7 @@ class PostController extends Controller
         return view('blog.postingan.post-home',
         [
             'title' => 'Halaman Postingan!',
-            'posts' => Post::with('category')->latest()->filter(request(['search', 'category']))->paginate(7),
+            'posts' => Post::with('category')->latest()->filter(request(['search', 'category']))->paginate(6),
         ]);
     }
 

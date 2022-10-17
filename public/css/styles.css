@@ -79,4 +79,7 @@ body {
     max-width: 100%;
     max-height: 300px;
     }
+    .iklan-multi{
+	display: none;
+    }
 }

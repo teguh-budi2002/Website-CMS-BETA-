@@ -47,7 +47,10 @@ class CategoryResource extends Controller
 		]);
 
 		if($request->file('imageCategory')){
-            $validated['imageCategory'] = $request->file('imageCategory')->store('/public/category-images');
+	    $file = $request->file('imageCategory');
+	    $filename = $file->getClientOriginalName();
+            $validated['imageCategory'] = $request->file('imageCategory')->move(public_path('storage/public/category-image'),$filename);
+	    $validated['imageCategory'] = $filename;
         }
 
 		Category::create($validated);
@@ -90,16 +93,18 @@ class CategoryResource extends Controller
         $rules = ([
             'name' => 'required',
             'slug' => 'required',
-            'imageCategory' => 'image|file|max:6048'
+	    'imageCategory' => 'image|file|max:6048'
         ]);
         $validated = $request->validate($rules);
             if($request->imageCategory){
 
-                if($request->oldimage){
-                    Storage::delete($request->oldimage);
+                if($request->file('imageCategory')){
+                    Storage::disk('public')->delete('public/category-image/' . $kategori->imageCategory);
                 }
-
-                $validated['imageCategory'] = $request->file('imageCategory')->store('/public/category-images');
+            $file = $request->file('imageCategory');
+            $filename = $file->getClientOriginalName();
+            $validated['imageCategory'] = $request->file('imageCategory')->move(public_path('storage/public/category-image'),$filename);
+            $validated['imageCategory'] = $filename;
             }
         $update = Category::where('id', $kategori->id)->update($validated);
         return redirect('/gae-kategori/kategori')->with('sukses', 'Kategori sukses di update bro!');
@@ -113,9 +118,7 @@ class CategoryResource extends Controller
      */
     public function destroy(Category $kategori)
     {
-        if($kategori->imageCategory){
-            Storage::delete($kategori->imageCategory);
-        }
+        Storage::disk('public')->delete('public/category-image/' . $kategori->imageCategory);
         Category::destroy($kategori->id);
         return redirect('/gae-kategori/kategori')->with('sukses', 'Postingan sukses di hapus bro!');
     }

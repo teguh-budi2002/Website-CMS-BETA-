@@ -29,7 +29,7 @@
             <div class="col-md-3">
               <div class="card-image mt-5 flex justify-center">
                 @if ($category->imageCategory)
-                <a href="{{ url('/categories/'. $category->slug) }}"><img class="max-w-32 rounded-full max-h-32" id="gambar-thumb" style="box-shadow: 3px 3px 2px rgba(0,0,0,0.5);"  src="{{ asset('storage/' . $category->imageCategory) }}" alt="{{ $category->imageCategory }}"></a>
+                <a href="{{ url('/categories/'. $category->slug) }}"><img class="max-w-32 rounded-full max-h-32" id="gambar-thumb" style="box-shadow: 3px 3px 2px rgba(0,0,0,0.5);"  src="{{ asset('storage/public/category-image/' . $category->imageCategory) }}" alt="{{ $category->imageCategory }}"></a>
                 @else
                 <img class="w-full"
                     src="https://source.unsplash.com/1200x400?{{ $category->name }}" alt="gambar">

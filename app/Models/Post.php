@@ -21,8 +21,7 @@ class Post extends Model
     public function scopeFilter($query, array $filters){
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where(function($query) use ($search) {
-                 $query->where('judul', 'like', '%' . $search . '%')
-                             ->orWhere('body', 'like', '%' . $search . '%');
+                 $query->where('judul', 'like', '%' . $search . '%');
              });
          });
          $query->when($filters['category'] ?? false, function($query, $category){

@@ -21,11 +21,61 @@
 #tulisan-postingan{
     text-align: start;
 }
+
+.kotak-post{
+    position: relative;
+    width:400px;
+    height: 380px;
+    margin-left: 20px;
+    background-color: white;
+    padding: 8px;
+    box-shadow: 1px 1px 10px black;
+}
+
+.gambar-post{
+    width: 100%;
+    height: 70%;
+}
+#scale-kotak{
+    position: relative;
+}
+@media screen and (max-width: 440px){
+    .kotak-post{
+        position: relative;
+        width:380px;
+        height: 380px;
+        margin-right: 20px;
+        background-color: white;
+        padding: 8px;
+        box-shadow: 1px 1px 10px black;
+    }
+}
+@media screen and (max-width: 600px){
+    .kotak-post{
+        position: relative;
+        width:380px;
+        height: 380px;
+        background-color: white;
+        padding: 8px;
+        box-shadow: 1px 1px 10px black;
+    }
+}
+@media screen and (max-width: 1000px;){
+    .kotak-post{
+        position: relative;
+        width:380px;
+        height: 380px;
+        background-color: white;
+        padding: 8px;
+        box-shadow: 1px 1px 10px black;
+    }
+}
+
 @media (max-width: 800px) {
     .panah-bawah{
         position: absolute;
         bottom: -5%;
-        left: 40%;
+        left: 45%;
         height: 80px;
         width: 80px;
         cursor: pointer;
@@ -40,5 +90,15 @@
     #tulisan-postingan{
         text-align: center;
         font-family: 'Hubballi', cursive;
+    }
+}
+@media (max-width: 440px){
+    .panah-bawah{
+        position: absolute;
+        bottom: -5%;
+        left: 40%;
+        height: 80px;
+        width: 80px;
+        cursor: pointer;
     }
 }

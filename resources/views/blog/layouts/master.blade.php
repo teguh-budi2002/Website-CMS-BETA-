@@ -1,7 +1,7 @@
 @extends('blog.index')
 @section('container')
 <section class=" dark:bg-gray-800">
-    <link rel="stylesheet" href="{{ asset('css/master-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/master-style.css') }}">
     <div class="bg-green-200 dark:bg-slate-700 border-b-2 border-green-300 dark:border-teal-400">
         <!--Hero-->
         <div class="pt-10">
@@ -20,7 +20,7 @@
                 </div>
                 <!--Right Col-->
                 <div class="logonih w-full md:w-3/5 py-6">
-                    <img class="w-full md:w-2/4 mx-auto" src="{{ asset('img/logo_coding.png') }}"
+                    <img class="w-full md:w-2/4 mx-auto" src="{{ asset('img/logo_coding.webp') }}"
                         alt="https://www.freepik.com/vectors/technology" />
                 </div>
             </div>
@@ -29,32 +29,28 @@
 
     {{-- Main --}}
     <div class="container relative">
-        <div class="panah-bawah animate-bounce">
-            <img src="{{ asset('/img/down-arrow.png') }}" alt="https://www.flaticon.com/free-icons/arrow">
-        </div>
-        <div class="kotak"></div>
-        <div class="main-page">
-            <div class="row">
+        <div class="main">
+		<div class="row">
                 <hr>
                 <div class="text-2xl font-semibold mt-8 mb-20 dark:text-gray-50" style="font-family: 'Hubballi', cursive;"
                     id="tulisan-postingan">
                     <p class="tracking-wide text-6xl">Postingan Terbaru!</p>
                     <p class="">Banyak artikel yang mungkin belum kamu baca nih...</p>
                 </div>
-                @foreach( $posts as $post)
-                <div class="col-lg-3 mb-5">
-                    <div class="card dark:bg-gray-700 dark:text-gray-50 dark:shadow-gray-600 shadow-xl w-full" id="card-header">
-                        <img class="w-full" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->image }}">
-                        <div class="card-body" id="card-body">
-                            <h5 class="card-title  font-bold">{{ $post->judul }}</h5>
-                            <p class="card-text text-sm mb-2">{!! $post->excerpt !!}</p>
-                            <a href="{{ url('/post/'. $post->slug) }}" class="btn btn-success">Ayo baca!</a>
-                        </div>
+                @foreach ($posts as $post)
+                <div class="col-md-4 mt-1 mb-5 flex flex-wrap justify-center" id="scale-kotak">
+                    <div class="kotak-post rounded-lg">
+                        <img class="rounded-t-lg" src="{{ asset('storage/public/post-images/' . $post->image) }}" alt="{{ $post->image }}"
+                            class="gambar-post">
+                        <a href="{{ url('/post/'.$post->slug) }}"
+                            class="judul text-xl font-semibold mt-1 text-gray-600 hover:text-blue-500">{{ $post->judul }}</a>
+                        <p class="excerpt text-sm mt-2">{{ $post->excerpt }}</p>
                     </div>
                 </div>
                 @endforeach
             </div>
             <hr class="dark:text-gray-50">
+
             <div class="mt-4"></div>
             <div class="col-md-8 mx-auto mb-5">
               <form name="guh-coding-contact">
@@ -169,19 +165,6 @@
                 })
                 .catch(error => console.error('Error!', error.message))
         })
-
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $(".panah-bawah").click(function () {
-                $(".main-page").slideDown("slow");
-            });
-
-            $(".panah-bawah").click(function () {
-                $(".panah-bawah").hide(300);
-            });
-        });
 
     </script>
 </section>

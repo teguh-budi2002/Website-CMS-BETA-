@@ -50,12 +50,15 @@ class DashboardPostController extends Controller
             'slug' => 'required|unique:post',
             'author' => 'required',
             'body' => 'required',
-            'image' => 'image|file|max:1024',
+            'image' => 'image|file|max:5048',
             'category_id' => 'required'
         ]);
 
         if($request->file('image')){
-            $validate['image'] = $request->file('image')->store('/public/post-images');
+	    $file = $request->file('image');
+	    $filename = $file->getClientOriginalName();
+            $validate['image'] = $request->file('image')->move(public_path('storage/public/post-images'),$filename);
+	    $validate['image'] = $filename;
         }
 
         // $validate['category_id'] = implode('', $request->category_id);
@@ -79,7 +82,6 @@ class DashboardPostController extends Controller
     //           'image' => $data['image'],
     //           'category_id' => $data['category_id']
     //        ];
-
 
     //    $reqInput->category()->attach($request['category_id']);
        return redirect('/gae-post/buat/postingan')->with('sukses', 'Postingan sukses di upload bro!');
@@ -134,12 +136,14 @@ class DashboardPostController extends Controller
         $validasi = $request->validate($rules);
 
         if($request->file('image')){
-
-            if($request->oldimage){
-                Storage::delete($request->oldimage);
-            }
-
-            $validasi['image'] = $request->file('image')->store('/public/post-images');
+		if($request->file('image')){
+           $simpan = Storage::disk('public')->delete('public/post-images/' . $postingan->image);
+	//dd($simpan);
+	}
+	$file = $request->file('image');
+	$filename = $file->getClientOriginalName();
+        $validasi['image'] = $request->file('image')->move(public_path('storage/public/post-images'),$filename);
+	$validasi['image'] = $filename;
         }
 
                Post::where('id', $postingan->id)
@@ -155,9 +159,7 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $postingan)
     {
-        if($postingan->image){
-            Storage::delete($postingan->image);
-        }
+        Storage::disk('public')->delete('public/post-images/' . $postingan->image);
         Post::destroy($postingan->id);
         return redirect('/gae-post/buat/postingan')->with('sukses', 'Postingan sukses di hapus bro!');
     }

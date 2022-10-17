@@ -30,7 +30,7 @@
                 <label for="image" class="form-label">Edit Image</label>
                 <input type="hidden" name="oldimage" value={{ $categories->imageCategory }}>
                 @if ($categories->imageCategory)
-                <img src="{{ asset('storage/' . $categories->imageCategory) }}" class="img-preview mb-2 rounded-md img-fluid">
+                <img src="{{ asset('storage/public/category-image/' . $categories->imageCategory) }}" class="img-preview mb-2 rounded-md img-fluid">
                 @else
                 <img class="img-preview mb-2 rounded-md img-fluid">
                 @endif

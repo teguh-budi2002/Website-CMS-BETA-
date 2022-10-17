@@ -34,7 +34,7 @@
               <div
               class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mt-4">
               <a href="#">
-                  <img class="rounded-t-lg" src="{{ asset('storage/' . $category->image) }}"
+                  <img class="rounded-t-lg" src="{{ asset('storage/public/post-images/' . $category->image) }}"
                       alt="gambar">
               </a>
                     <div class="p-3">
@@ -61,9 +61,9 @@
     <div class="container">
       <hr class="dark:text-teal-500 mt-10" style="font-weight: 400px">
   </div>
-  <div class="text-4xl dark:text-gray-50 text-center font-bold font-sans mt-20 mb-10 flex flex-nowrap justify-center">
+  <div class="text-4xl dark:text-gray-50 text-center font-bold font-sans mt-20 mb-10 flex flex-wrap justify-center">
       <p class="" data-aos-duration="1000">Oops,Belum Ada Postingan pada Kategori Ini!</p>
-      <a href="{{ url('/categories') }}"><button class="btn bg-green-400 hover:bg-green-500 ml-2 mb-1">Kembali?</button></a>
+      <a href="{{ url('/categories') }}"><button class="btn bg-green-400 mt-5 hover:bg-green-500 ml-2 mb-1">Kembali?</button></a>
   </div>>
     @endif
     </div>
