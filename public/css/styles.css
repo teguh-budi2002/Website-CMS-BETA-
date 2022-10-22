@@ -1,17 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-body {
+/* body {
     background-color: rgb(235, 235, 235);
     font-family: 'Montserrat', sans-serif;
 
-}
+} */
 
 .container-postingan {
     width: 100%;
-    /* margin-top: 50px; */
     display: grid;
     grid-template-areas: 'article aside'
                         'article aside';
-    grid-template-columns: 2.1fr 1.2fr;
+    grid-template-columns: 0.7fr 0.3fr;
     gap: 30px;
 
 }
@@ -37,13 +36,6 @@ body {
 .aside p{
     font-family: 'Montserrat:600', sans-serif;
 }
-
-
-/* .side{
-    grid-area: side;
-    transform: translateX(-25%);
-    position: fixed;
-} */
 
 #foto-konten{
     max-width: 100%;
@@ -72,14 +64,9 @@ body {
     .diskusi{
         padding: 20px;
     }
-    /* .artikel-side{
-        display: none;
-    } */
+
     #foto-konten{
     max-width: 100%;
     max-height: 300px;
-    }
-    .iklan-multi{
-	display: none;
     }
 }

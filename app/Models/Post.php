@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use Cviebrock\EloquentSluggable\Sluggable;
+
 class Post extends Model
 {
     use HasFactory, Sluggable;
@@ -14,37 +15,36 @@ class Post extends Model
     protected $guarded = ['id'];
 
 
-    public function category(){
-        return $this->belongsTo(Category::class);
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'post_category');
     }
 
-    public function scopeFilter($query, array $filters){
-        $query->when($filters['search'] ?? false, function($query, $search) {
-            return $query->where(function($query) use ($search) {
-                 $query->where('judul', 'like', '%' . $search . '%');
-             });
-         });
-         $query->when($filters['category'] ?? false, function($query, $category){
-             return $query->whereHas('category', function($query) use ($category){
-                 $quuery->where('slug', $category);
-             });
-         });
-
-
-        }
-
-        public function getRouteKeyName()
-        {
-            return 'slug';
-        }
-
-        public function sluggable(): array
-        {
-            return [
-                'slug' => [
-                    'source' => 'judul'
-                ]
-            ];
-        }
-
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('judul', 'LIKE', '%' . $search . '%');
+            });
+        });
+        $query->when($filters['categories'] ?? false, function ($query, $category) {
+            return $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'judul'
+            ]
+        ];
+    }
+}

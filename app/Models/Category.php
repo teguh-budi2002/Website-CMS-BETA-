@@ -14,7 +14,8 @@ class Category extends Model
 
     // protected $with = ['posts'];
 
-    public function posts(){
-        return $this->hasMany(Post::class);
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_category');
     }
 }

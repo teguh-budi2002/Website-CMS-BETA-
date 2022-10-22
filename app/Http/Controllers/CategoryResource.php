@@ -17,9 +17,9 @@ class CategoryResource extends Controller
      */
     public function index()
     {
-        return view('dashboard.category.category',[
-			'categories' => Category::get(),
-		]);
+        return view('dashboard.category.category', [
+            'categories' => Category::get(),
+        ]);
     }
 
     /**
@@ -41,20 +41,20 @@ class CategoryResource extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-			'name' => 'required',
-			'slug' => 'required',
-			'imageCategory' => 'image|file|max:6000'
-		]);
+            'name' => 'required',
+            'slug' => 'required',
+            'imageCategory' => 'image|file|max:6000'
+        ]);
 
-		if($request->file('imageCategory')){
-	    $file = $request->file('imageCategory');
-	    $filename = $file->getClientOriginalName();
-            $validated['imageCategory'] = $request->file('imageCategory')->move(public_path('storage/public/category-image'),$filename);
-	    $validated['imageCategory'] = $filename;
+        if ($request->file('imageCategory')) {
+            $file = $request->file('imageCategory');
+            $filename = $file->getClientOriginalName();
+            $validated['imageCategory'] = $request->file('imageCategory')->move(public_path('storage/public/category-image'), $filename);
+            $validated['imageCategory'] = $filename;
         }
 
-		Category::create($validated);
-		return redirect('/gae-kategori/kategori')->with('sukses', 'Kategori sukses di upload bro!');
+        Category::create($validated);
+        return redirect('/gae-kategori/kategori')->with('sukses', 'Category Successfully Created');
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryResource extends Controller
     public function edit(Category $kategori)
     {
         return view('dashboard.category.category-edit', [
-            'categories' => $kategori,
+            'category' => $kategori,
         ]);
     }
 
@@ -93,21 +93,21 @@ class CategoryResource extends Controller
         $rules = ([
             'name' => 'required',
             'slug' => 'required',
-	    'imageCategory' => 'image|file|max:6048'
+            'imageCategory' => 'image|file|max:6048'
         ]);
         $validated = $request->validate($rules);
-            if($request->imageCategory){
+        if ($request->imageCategory) {
 
-                if($request->file('imageCategory')){
-                    Storage::disk('public')->delete('public/category-image/' . $kategori->imageCategory);
-                }
+            if ($request->file('imageCategory')) {
+                Storage::disk('public')->delete('public/category-image/' . $kategori->imageCategory);
+            }
             $file = $request->file('imageCategory');
             $filename = $file->getClientOriginalName();
-            $validated['imageCategory'] = $request->file('imageCategory')->move(public_path('storage/public/category-image'),$filename);
+            $validated['imageCategory'] = $request->file('imageCategory')->move(public_path('storage/public/category-image'), $filename);
             $validated['imageCategory'] = $filename;
-            }
+        }
         $update = Category::where('id', $kategori->id)->update($validated);
-        return redirect('/gae-kategori/kategori')->with('sukses', 'Kategori sukses di update bro!');
+        return redirect('/gae-kategori/kategori')->with('sukses', 'Category Successfully Updated');
     }
 
     /**
@@ -120,6 +120,6 @@ class CategoryResource extends Controller
     {
         Storage::disk('public')->delete('public/category-image/' . $kategori->imageCategory);
         Category::destroy($kategori->id);
-        return redirect('/gae-kategori/kategori')->with('sukses', 'Postingan sukses di hapus bro!');
+        return redirect('/gae-kategori/kategori')->with('sukses', 'Category Deleted Successfully');
     }
 }

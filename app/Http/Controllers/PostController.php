@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -9,14 +10,16 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    public function index(Post $post){
+    public function index(Post $post)
+    {
 
         $posts = $post->latest()->limit(9)->get();
 
         return view('blog.layouts.master', compact('posts'));
     }
 
-    public function profile(){
+    public function profile()
+    {
 
         return view('blog.profile', [
             'title' => 'Author',
@@ -24,21 +27,31 @@ class PostController extends Controller
         ]);
     }
 
-    public function indexPost(Post $post){
+    public function indexPost(Post $post)
+    {
 
-        return view('blog.postingan.post-home',
-        [
-            'title' => 'Halaman Postingan!',
-            'posts' => Post::with('category')->latest()->filter(request(['search', 'category']))->paginate(6),
+        return view(
+            'blog.postingan.post-home',
+            [
+                'title' => 'Halaman Postingan!',
+                'posts' => Post::with('categories')->latest()->filter(request(['search', 'categories']))->paginate(6),
+            ]
+        );
+    }
+
+    public function post(Post $post)
+    {
+        return view('blog.postingan.view-post', [
+            'title' => $post->judul,
+            'post' => $post->with('categories')->first(),
+            'randoms' => $post->inRandomOrder()->limit(8)->get(),
         ]);
     }
 
-    public function post(Post $post){
-        return view('blog.postingan.view-post', [
-            'title' => $post->judul,
-            'post' => $post,
-            'posts' => $post->with('category')->latest()->limit(6)->get(),
-            'randoms' => $post->with('category')->inRandomOrder()->limit(5)->get(),
-        ]);
+    public function searchPost()
+    {
+        $searching = Post::with('categories')->filter(request(['search', 'categories']))->get();
+
+        return view('blog.search.showSearchPost', ['posts' => $searching, 'searching' => request('search')]);
     }
 }

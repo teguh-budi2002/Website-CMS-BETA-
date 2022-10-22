@@ -1,32 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
 
-.panah-bawah{
-    position: absolute;
-    bottom: 10%;
-    left: 47%;
-    height: 80px;
-    width: 80px;
-    cursor: pointer;
-}
-.kotak{
-    display: block;
-    height: 20px;
-}
-.main-page{
-    display: none;
-}
-#logo-hiasan{
-    height: 80%;
-}
-#tulisan-postingan{
-    text-align: start;
-}
-
 .kotak-post{
     position: relative;
     width:400px;
     height: 380px;
-    margin-left: 20px;
     background-color: white;
     padding: 8px;
     box-shadow: 1px 1px 10px black;
@@ -34,71 +11,12 @@
 
 .gambar-post{
     width: 100%;
-    height: 70%;
-}
-#scale-kotak{
-    position: relative;
-}
-@media screen and (max-width: 440px){
-    .kotak-post{
-        position: relative;
-        width:380px;
-        height: 380px;
-        margin-right: 20px;
-        background-color: white;
-        padding: 8px;
-        box-shadow: 1px 1px 10px black;
-    }
-}
-@media screen and (max-width: 600px){
-    .kotak-post{
-        position: relative;
-        width:380px;
-        height: 380px;
-        background-color: white;
-        padding: 8px;
-        box-shadow: 1px 1px 10px black;
-    }
-}
-@media screen and (max-width: 1000px;){
-    .kotak-post{
-        position: relative;
-        width:380px;
-        height: 380px;
-        background-color: white;
-        padding: 8px;
-        box-shadow: 1px 1px 10px black;
-    }
+    min-height: 70%;
 }
 
-@media (max-width: 800px) {
-    .panah-bawah{
-        position: absolute;
-        bottom: -5%;
-        left: 45%;
-        height: 80px;
-        width: 80px;
-        cursor: pointer;
-    }
-    #logo-hiasan{
-        display: none;
-    }
-
-    #tulisan, #guh-tulisan {
-      display: none;
-    }
-    #tulisan-postingan{
-        text-align: center;
-        font-family: 'Hubballi', cursive;
-    }
-}
-@media (max-width: 440px){
-    .panah-bawah{
-        position: absolute;
-        bottom: -5%;
-        left: 40%;
-        height: 80px;
-        width: 80px;
-        cursor: pointer;
+@media screen and (max-width: 460px) {
+    .kotak-post {
+        max-width: 320px;
+        max-height: 380px;
     }
 }
