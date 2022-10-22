@@ -2,7 +2,7 @@
 @section('container')
 <section class="bg-gray-50 dark:bg-gray-800 w-full h-full overflow-hidden">
     <h1 class="pt-5 mb-4 text-4xl font-semibold text-center text-gray-600 dark:text-gray-50">
-        Halaman Postingan GuhCoding
+        {{ $searching }}
     </h1>
 
     <div class="bread_crumbs_wrapper w-3/4 mx-auto">
@@ -58,11 +58,6 @@
             </div>
         </div>
         @endforeach
-    </div>
-    <div class="pagination__wrapper mt-10 mb-8">
-        <div class="flex justify-center">
-            {{ $posts->links('vendor.pagination.simple-tailwind') }}
-        </div>
     </div>
     @else
     <div class="wrapper w-full h-screen flex items-center justify-center">

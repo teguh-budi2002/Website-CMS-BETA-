@@ -14,28 +14,18 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-// Route untuk logreg!
-route::get('/register/gae-post', 'AuthController@register');
+route::get('/register/gae-post/blabluebli', 'AuthController@register');
 route::post('/register/gae-post/process', 'AuthController@regProcess');
-route::get('/login/gae-post', 'AuthController@index');
-route::get('/login/gae-post/process', 'AuthController@logProcess');
-route::get('/logout', 'AuthController@logout');
+// Login Route
+Route::middleware('throttle:60,1')->group(function () {
+    route::get('/login/gae-post', 'AuthController@index');
+    route::post('/login/gae-post/process', 'AuthController@logProcess');
+    route::post('/logout', 'AuthController@logout');
+});
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/gae-post', function(){
+    Route::get('/gae-post', function () {
         return view('dashboard.master');
     });
 
@@ -46,9 +36,6 @@ Route::middleware('auth')->group(function () {
     // Kategori
     Route::resource('/gae-kategori/kategori', CategoryResource::class);
     Route::put('/gae-kategori/kategori/', 'CategoryResource@update')->name('category.edit');
-    // Tags
-    Route::get('/gae-tags/tags', 'TagsController@index');
-    Route::post('gae-tags/tags/kirim', 'TagsController@create');
 });
 
 
@@ -59,14 +46,15 @@ route::get('/', 'PostController@index')->name('home');
 
 Route::get('/halaman-post', 'PostController@indexPost');
 Route::get('/post/{post:slug}', 'PostController@post');
+//Search Post
+Route::get('/search', 'PostController@searchPost');
 
 
 Route::get('/categories', 'CategoryController@index');
-Route::get('/categories/{category:slug}', function(Category $category) {
+Route::get('/categories/{category:slug}', function (Category $category) {
     return view('blog.categories', [
         'title' => $category->name,
         'category' => $category->name,
-        'categories' => $category->posts()->paginate(9),
+        'postCategories' => $category->posts()->paginate(9),
     ]);
-
 });

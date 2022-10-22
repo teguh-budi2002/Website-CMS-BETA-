@@ -1,7 +1,10 @@
 @extends('dashboard.partial.main')
-
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Welcome, {{ auth()->user()->username }}</h1>
-</div>
+<section class="w-full h-full text-white">
+    <div class="flex justify-start">
+        <div class="mt-28 mx-20">
+            <p>Hello, {{ auth()->user()->username }} Selamat datang pada halaman dashboard</p>
+        </div>
+    </div>
+</section>
 @endsection

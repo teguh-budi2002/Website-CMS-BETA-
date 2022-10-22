@@ -2,60 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use Hash;
 use Session;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         return view('blog.login', [
             'title' => 'Login',
             'slug' => 'login'
         ]);
     }
 
-// LOGIN CONTROLLER
-    public function logProcess(Request $request){
-        $valid = $request->validate([
-            'email' => 'required|min:5|email:dns',
-            'password'=> 'required'
+    // LOGIN CONTROLLER
+    public function logProcess(Request $request)
+    {
+        $validation = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
         ]);
 
-        $ingat = $request->remember ? true : false;
-        if (Auth::attempt($valid, $ingat)) {
-            $request->session()->regenerate();
+        $user = User::where('username', $request->username)->first();
 
-            return redirect()->intended('/gae-post');
+        if ($user === null) {
+            return redirect()->back()->with('error', 'Data Yang Anda Masukkan Salah');
+        } elseif ($user->username !== "TeguhSiAdminGuhCoding") {
+            return redirect()->back()->with('notAdmin', 'Anda Bukan Admin');
+        } else {
+            $ingat = $request->remember ? true : false;
+            if (Auth::attempt($validation, $ingat)) {
+                $request->session()->regenerate();
+
+                return redirect()->intended('/gae-post');
+            }
         }
-
-        return redirect()->back();
     }
 
     // LOGOUT CONTROLLER
-          public function logout(Request $request)
-        {
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
-        }
+        return redirect('/login/gae-post');
+    }
 
 
-// REGITSER CONTROLLER
-    public function register(){
-            return view('blog.register', [
-                'title' => 'Register',
-                'slug' => 'register',
-            ]);
-        }
-    public function regProcess(Request $request){
+    // REGITSER CONTROLLER
+    public function register()
+    {
+        return view('blog.register', [
+            'title' => 'Register',
+            'slug' => 'register',
+        ]);
+    }
+    public function regProcess(Request $request)
+    {
 
         $validasi = $request->validate([
             'username' => 'required|min:5|max:155|unique:user',
@@ -74,12 +84,10 @@ class AuthController extends Controller
 
     public function create(array $data)
     {
-       return User::create([
-        'username' => $data['username'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-      ]);
-
-      }
-
+        return User::create([
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
+}

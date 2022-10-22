@@ -1,47 +1,50 @@
 @extends('blog.index')
 @section('container')
-<section class=" dark:bg-gray-800">
-    <link rel="stylesheet" href="{{ asset('/css/master-style.css') }}">
+@push('styles-css')
+<link rel="stylesheet" href="{{ asset('/css/master-style.css') }}">
+@endpush
+<section class="dark:bg-gray-800 w-full h-full overflow-x-hidden main_section">
     <div class="bg-green-200 dark:bg-slate-700 border-b-2 border-green-300 dark:border-teal-400">
         <!--Hero-->
-        <div class="pt-10">
-            <div class="container relative px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-                <!--Left Col-->
-                <div class="kata flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-
-                    <h1 class="my-4 text-5xl dark:bg-teal-400 rounded-lg p-2 font-bold leading-tight font-mono text-slate-800 dark:text-gray-100 dark:shadow-2xl dark:shadow-teal-400" id="text-glitch" style="text-shadow: 2px 2px 5px rgb(22, 24, 24);">
-
-                    </h1>
-                    <button class="relative mx-auto inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
-                        <a class="no-underline font-sans font-bold relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-50 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 text-slate-800 hover:text-gray-50 dark:text-gray-50" href="{{ url('/halaman-post') }}">
+        <div class="w-full h-full">
+            <div class="grid md:grid-cols-2 grid-cols-1">
+                <div class="flex justify-center items-center">
+                    <div class="kata w-full md:w-3/4 text-center mx-auto">
+                        <h1 class="my-4 text-5xl dark:bg-teal-400 rounded-lg p-2 font-bold leading-tight font-mono text-slate-800 dark:text-gray-100 dark:shadow-2xl dark:shadow-teal-400"
+                            id="text-glitch" style="text-shadow: 2px 2px 5px rgb(22, 24, 24);">
+                        </h1>
+                        <button
+                            class="inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+                            <a class="no-underline font-sans font-bold px-10 py-3 transition-all ease-in duration-75 bg-gray-50 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 text-slate-800 hover:text-gray-50 dark:text-gray-50"
+                                href="{{ url('/halaman-post') }}">
                                 Yuk Mulai Belajar
                             </a>
-                      </button>
+                        </button>
+                    </div>
                 </div>
                 <!--Right Col-->
-                <div class="logonih w-full md:w-3/5 py-6">
-                    <img class="w-full md:w-2/4 mx-auto" src="{{ asset('img/logo_coding.webp') }}"
-                        alt="https://www.freepik.com/vectors/technology" />
+                <div class="w-2/3 mx-auto my-8">
+                    <img src="{{ asset('img/logo_coding.webp') }}" alt="https://www.freepik.com/vectors/technology" />
                 </div>
             </div>
         </div>
     </div>
 
     {{-- Main --}}
-    <div class="container relative">
-        <div class="main">
-		<div class="row">
-                <hr>
-                <div class="text-2xl font-semibold mt-8 mb-20 dark:text-gray-50" style="font-family: 'Hubballi', cursive;"
-                    id="tulisan-postingan">
-                    <p class="tracking-wide text-6xl">Postingan Terbaru!</p>
-                    <p class="">Banyak artikel yang mungkin belum kamu baca nih...</p>
+    <div class="main__section">
+        <div class="main-wrapper w-full h-full">
+            <div class="text__header md:mx-10 mx-0 md:text-start text-center">
+                <div class="font-semibold mt-8 mb-20 text-gray-600 space-y-3 dark:text-gray-50" id="tulisan-postingan">
+                    <p class="text-6xl">Postingan Terbaru!</p>
+                    <p class="text-2xl">Banyak artikel yang mungkin belum kamu baca nih...</p>
                 </div>
+            </div>
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                 @foreach ($posts as $post)
-                <div class="col-md-4 mt-1 mb-5 flex flex-wrap justify-center" id="scale-kotak">
+                <div class="mt-2 mb-5 flex justify-center" id="scale-kotak">
                     <div class="kotak-post rounded-lg">
-                        <img class="rounded-t-lg" src="{{ asset('storage/public/post-images/' . $post->image) }}" alt="{{ $post->image }}"
-                            class="gambar-post">
+                        <img class="rounded-t-lg" src="{{ asset('storage/public/post-images/' . $post->image) }}"
+                            alt="{{ $post->image }}" class="gambar-post">
                         <a href="{{ url('/post/'.$post->slug) }}"
                             class="judul text-xl font-semibold mt-1 text-gray-600 hover:text-blue-500">{{ $post->judul }}</a>
                         <p class="excerpt text-sm mt-2">{{ $post->excerpt }}</p>
@@ -49,126 +52,82 @@
                 </div>
                 @endforeach
             </div>
-            <hr class="dark:text-gray-50">
+            <hr class="dark:text-gray-50 border-2 border-gray-400 mx-20 mt-5">
+            <div class="flex justify-center mt-8 mb-8">
+                <div class="md:w-3/4 w-full md:mx-0 mx-7 h-auto shadow-md shadow-gray-400">
+                    <form name="guh-coding-contact">
+                        @csrf {{ method_field('POST') }}
+                        <div class="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg">
+                            <div id="pesan-alert" class="hidden">
+                                <div class="flex items-center p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200"
+                                    role="alert">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div class="ml-3 text-sm font-medium text-green-700 dark:text-green-800">
+                                        <strong>Thankyou!</strong> for sending the feedback into author.
+                                    </div>
+                                    <button type="button" id="close"
+                                        class="ml-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-green-200 dark:text-green-600 dark:hover:bg-green-300"
+                                        data-collapse-toggle="alert-3" aria-label="Close">
+                                        <span class="sr-only">Close</span>
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="mb-3 font-semibold text-4xl text-gray-500 dark:text-gray-50">
+                                Give Feedback To Author!</p>
+                            <div class="input-group mb-3">
+                                <label for="nama" class="text-lg text-gray-500">Your Name</label>
+                                <input type="text" placeholder="Your name???" class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600" name="nama" id="nama">
+                            </div>
 
-            <div class="mt-4"></div>
-            <div class="col-md-8 mx-auto mb-5">
-              <form name="guh-coding-contact">
-                {{ @csrf_field() }} {{ method_field('POST') }}
-                <div class="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg">
-                  {{-- alert --}}
-                  <div id="pesan-alert" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200 d-none" role="alert">
-                    <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                    <div class="ml-3 text-sm font-medium text-green-700 dark:text-green-800">
-                    <strong>Terimakasih!</strong> sudah mengirimkan pesan kepada author.
-                    </div>
-                    <button type="button" id="close" class="ml-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-green-200 dark:text-green-600 dark:hover:bg-green-300" data-collapse-toggle="alert-3" aria-label="Close">
-                      <span class="sr-only">Close</span>
-                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </button>
-                  </div>
-                    <p class="mb-3 font-bold text-4xl dark:text-gray-50" style="font-family: 'Hubballi', cursive;">
-                        Berikan author sebuah kritik dan saran :D</p>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
-                        <input type="text" class="form-control" name="nama" placeholder="Namamu?" aria-label="Username"
-                            aria-describedby="basic-addon1" required>
-                    </div>
+                            <div class="input-group mb-3">
+                                <label for="email" class="text-lg text-gray-500">Your Email</label>
+                                <input type="text" placeholder="Your email???" class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600" name="email" id="email">
+                            </div>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
-                        <input type="email" class="form-control" name="email" placeholder="Emailmu?"
-                            aria-label="Username" aria-describedby="basic-addon1" required>
-                    </div>
+                            <div class="form-group mb-3">
+                                <label for="pesan" class="text-lg text-gray-500">Your Feedback!</label>
+                                <textarea type="text" class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600" placeholder="Throw your feedback here...." name="pesan" id="pesan"></textarea>
+                            </div>
 
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" style="resize: none; height: 80px;" placeholder="Leave a comment here" id="floatingTextarea2"
-                            name="pesan" style="height: 100px" required></textarea>
-                        <label for="floatingTextarea2">Cantumkan pesan!</label>
-                    </div>
-
-                    <button type="submit" class="bg-green-500 w-full p-2 rounded-md hover:bg-green-700 btn-kirim">
-                        <span class="text-gray-50 font-bold">Kirimkan Pesan!</span>
-                    </button>
-                    <div class="text-center btn-loading d-none">
-                        <div class="spinner-border text-success" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                            <button type="submit" class="bg-green-500 w-full p-2 rounded-md hover:bg-green-700 btn-kirim">
+                                <span class="text-gray-50 font-bold">Send Message</span>
+                            </button>
+                            <div class="btn-loading hidden">
+                                <div class="flex justify-center">
+                                    <div class="w-9 h-9 border-b-4 border-green-500 animate-spin rounded-full" role="status">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-              </form>
             </div>
         </div>
     </div>
     {{-- End Main --}}
-
-    <!--Footer-->
-    @include('blog.layouts.footer')
-    {{-- Akhir Footer --}}
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
-    <script>
-        gsap.registerPlugin(TextPlugin);
-        gsap.to('.kata h1', {
-            duration: 3,
-            delay: 0.2,
-            text: "Tidak ada kata terlambat untuk belajar Coding!"
-        })
-
-        gsap.from('.logonih img', {
-            duration: 3,
-            delay: 0.2,
-            opacity: 0,
-            x: 100,
-            skewX: 45,
-            scale: 2,
-            rotation: 180,
-            ease: 'back'
-        })
-
-    </script>
-
-    <script>
-        const scriptURL =
-            'https://script.google.com/macros/s/AKfycbxda6omdKJQElIf9FU2VRjnYVwWEBWqa-jhGvPLD-3HXCOmV5ibq32O0HoHENLrip0-/exec'
-        const form = document.forms['guh-coding-contact']
-        const btnKirim = document.querySelector('.btn-kirim');
-        const btnLoading = document.querySelector('.btn-loading');
-        const alert = document.querySelector('#pesan-alert');
-        const tutupAlert = document.querySelector('#close');
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            // ketika dikirim
-            btnLoading.classList.toggle('d-none')
-            btnKirim.classList.toggle('d-none')
-
-            // tutup alert
-            tutupAlert.addEventListener('click', function () {
-                alert.classList.toggle('d-none')
-            })
-
-            fetch(scriptURL, {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then(response => {
-                    btnKirim.classList.toggle('d-none')
-                    btnLoading.classList.toggle('d-none')
-                    // tampilkan alert
-                    alert.classList.toggle('d-none')
-                    // reset form
-                    form.reset()
-
-                    console.log('Success!', response)
-                })
-                .catch(error => console.error('Error!', error.message))
-        })
-
-    </script>
+@push('js-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
+<script>
+    gsap.registerPlugin(TextPlugin);
+    gsap.to('.kata h1', {
+        duration: 3,
+        delay: 0.2,
+        text: "Tidak ada kata terlambat untuk belajar Coding!"
+    })
+</script>
+@endpush
+<script src="{{ asset('/js/contact-form.js') }}"></script>
 </section>
 @endsection
-
-
-
