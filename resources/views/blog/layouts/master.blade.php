@@ -29,7 +29,20 @@
             </div>
         </div>
     </div>
+    <div class="main_ads w-full flex justify-center mt-5 mb-5">
+        <div class="w-11/12 h-auto p-2">
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8107901415702789"
+                crossorigin="anonymous"></script>
+            <!-- Iklan Horizontal -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8107901415702789"
+                data-ad-slot="4920278246" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
 
+            </script>
+        </div>
+    </div>
     {{-- Main --}}
     <div class="main__section">
         <div class="main-wrapper w-full h-full">
@@ -44,7 +57,7 @@
                 <div class="mt-2 mb-5 flex justify-center" id="scale-kotak">
                     <div class="kotak-post rounded-lg">
                         <img class="rounded-t-lg" src="{{ asset('storage/public/post-images/' . $post->image) }}"
-                            alt="{{ $post->image }}" class="gambar-post">
+                            alt="{{ $post->image }}" loading="lazy" class="gambar-post">
                         <a href="{{ url('/post/'.$post->slug) }}"
                             class="judul text-xl font-semibold mt-1 text-gray-600 hover:text-blue-500">{{ $post->judul }}</a>
                         <p class="excerpt text-sm mt-2">{{ $post->excerpt }}</p>
@@ -61,8 +74,8 @@
                             <div id="pesan-alert" class="hidden">
                                 <div class="flex items-center p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200"
                                     role="alert">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800"
+                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                             clip-rule="evenodd"></path>
@@ -87,25 +100,33 @@
                                 Give Feedback To Author!</p>
                             <div class="input-group mb-3">
                                 <label for="nama" class="text-lg text-gray-500">Your Name</label>
-                                <input type="text" placeholder="Your name???" class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600" name="nama" id="nama">
+                                <input type="text" placeholder="Your name???"
+                                    class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600"
+                                    name="nama" id="nama">
                             </div>
 
                             <div class="input-group mb-3">
                                 <label for="email" class="text-lg text-gray-500">Your Email</label>
-                                <input type="text" placeholder="Your email???" class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600" name="email" id="email">
+                                <input type="text" placeholder="Your email???"
+                                    class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600"
+                                    name="email" id="email">
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="pesan" class="text-lg text-gray-500">Your Feedback!</label>
-                                <textarea type="text" class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600" placeholder="Throw your feedback here...." name="pesan" id="pesan"></textarea>
+                                <textarea type="text"
+                                    class="w-full rounded p-1 border-2 border-green-400 focus:outline-none focus:border-green-600"
+                                    placeholder="Throw your feedback here...." name="pesan" id="pesan"></textarea>
                             </div>
 
-                            <button type="submit" class="bg-green-500 w-full p-2 rounded-md hover:bg-green-700 btn-kirim">
+                            <button type="submit"
+                                class="bg-green-500 w-full p-2 rounded-md hover:bg-green-700 btn-kirim">
                                 <span class="text-gray-50 font-bold">Send Message</span>
                             </button>
                             <div class="btn-loading hidden">
                                 <div class="flex justify-center">
-                                    <div class="w-9 h-9 border-b-4 border-green-500 animate-spin rounded-full" role="status">
+                                    <div class="w-9 h-9 border-b-4 border-green-500 animate-spin rounded-full"
+                                        role="status">
                                     </div>
                                 </div>
                             </div>
@@ -116,18 +137,19 @@
         </div>
     </div>
     {{-- End Main --}}
-@push('js-scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
-<script>
-    gsap.registerPlugin(TextPlugin);
-    gsap.to('.kata h1', {
-        duration: 3,
-        delay: 0.2,
-        text: "Tidak ada kata terlambat untuk belajar Coding!"
-    })
-</script>
-@endpush
-<script src="{{ asset('/js/contact-form.js') }}"></script>
+    @push('js-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
+    <script>
+        gsap.registerPlugin(TextPlugin);
+        gsap.to('.kata h1', {
+            duration: 3,
+            delay: 0.2,
+            text: "Tidak ada kata terlambat untuk belajar Coding!"
+        })
+
+    </script>
+    @endpush
+    <script src="{{ asset('/js/contact-form.js') }}"></script>
 </section>
 @endsection

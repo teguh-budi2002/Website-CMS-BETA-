@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index()
     {
 
-        $posts = $post->latest()->limit(9)->get();
+        $posts = Cache::remember('posts', 60 * 24, function () {
+            return Post::latest()->limit(9)->get();
+        });
 
         return view('blog.layouts.master', compact('posts'));
     }
@@ -41,9 +44,12 @@ class PostController extends Controller
 
     public function post(Post $post)
     {
+        $getPost = Cache::remember('post', 60 * 24, function () use ($post) {
+            return Post::with('categories')->where('slug', $post->slug)->first();
+        });
         return view('blog.postingan.view-post', [
             'title' => $post->judul,
-            'post' => $post->with('categories')->first(),
+            'post' => $getPost,
             'randoms' => $post->inRandomOrder()->limit(8)->get(),
         ]);
     }

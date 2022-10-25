@@ -143,7 +143,8 @@ class DashboardPostController extends Controller
     {
         Storage::disk('public')->delete('public/post-images/' . $postingan->image);
         $postingan->categories()->detach();
-        Post::destroy($postingan->id);
+        $isDeleted = Post::destroy($postingan->id);
+
         return redirect('/gae-post/buat/postingan')->with('sukses', 'Post Successfully Deleted');
     }
 

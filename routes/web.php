@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Models\Post;
 use CategoryResource;
 use App\Models\Category;
 use DashboardPostController;
@@ -12,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\SitemapController;
+use Illuminate\Support\Facades\Cache;
 
 route::get('/register/gae-post/blabluebli', 'AuthController@register');
 route::post('/register/gae-post/process', 'AuthController@regProcess');
@@ -36,13 +36,16 @@ Route::middleware('auth')->group(function () {
     // Kategori
     Route::resource('/gae-kategori/kategori', CategoryResource::class);
     Route::put('/gae-kategori/kategori/', 'CategoryResource@update')->name('category.edit');
+
+    //Logger
+    Route::get('guhcoding/logger', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 });
 
 
 // route untuk Postingan!
-route::get('/profile', 'PostController@profile');
+Route::get('/profile', 'PostController@profile');
 
-route::get('/', 'PostController@index')->name('home');
+Route::get('/', 'PostController@index')->name('home');
 
 Route::get('/halaman-post', 'PostController@indexPost');
 Route::get('/post/{post:slug}', 'PostController@post');
@@ -58,3 +61,4 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         'postCategories' => $category->posts()->paginate(9),
     ]);
 });
+Route::get('/sitemap.xml', 'SitemapController@index');
