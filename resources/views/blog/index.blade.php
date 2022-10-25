@@ -8,9 +8,9 @@
     <title>GUH | {{ $title ?? 'Home' }}</title>
     <link rel="shortcut icon" href="{{ asset('/img/GuhCoding.png') }}" type="image/x-icon">
     <meta name="description"
-        content="GuhCoding.com Merupakan Website Tutorial Programming dan Coding Dijelaskan Dengan Jelas dan Terperinci" />
+        content="GuhCoding.com Merupakan Website Tutorial Programming dan Coding Diperuntukkan Untuk Pemula Dan Dijelaskan Secara Terstruktur" />
     <meta name="keywords"
-        content="guhcoding, Laravel, Tailwind, Tutorial Laravel, Tutorial Tailwind, Linux, Tips Trik Linux" />
+        content="guhcoding, GuhCoding.com, Laravel, laravel,CRUD , PHP, Visual Studio Code, vscode, Tailwind, Tutorial Laravel, Tutorial Tailwind,Tutorial PHP , Linux, Tips Trik Linux, Basic, Pemula" />
     <meta name="author" content="Teguh Budi Laksono" />
     <meta name="theme-color" content="#242020">
     <meta name="msapplication-navbutton-color" content="#242020" />
@@ -34,13 +34,6 @@
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'post-home': '#c0ffee',
-                    }
-                }
-            }
         };
 
     </script>

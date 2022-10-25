@@ -2,6 +2,7 @@
 @section('container')
 @push('styles-css')
 <link rel="stylesheet" href="{{ asset('/css/master-style.css') }}">
+<link rel="preload" as="image" href="{{ asset('img/logo_coding.webp') }}">
 @endpush
 <section class="dark:bg-gray-800 w-full h-full overflow-x-hidden main_section">
     <div class="bg-green-200 dark:bg-slate-700 border-b-2 border-green-300 dark:border-teal-400">
@@ -23,8 +24,8 @@
                     </div>
                 </div>
                 <!--Right Col-->
-                <div class="w-2/3 mx-auto my-8">
-                    <img src="{{ asset('img/logo_coding.webp') }}" alt="https://www.freepik.com/vectors/technology" />
+                <div class="my-8">
+                    <img src="{{ asset('img/logo_coding.webp') }}" class="w-2/3 h-auto mx-auto" alt="https://www.freepik.com/vectors/technology" />
                 </div>
             </div>
         </div>
