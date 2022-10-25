@@ -11,14 +11,21 @@
 <div class="bg-gray-100 dark:bg-gray-700 w-full h-full overflow-x-hidden">
     <div class="wrapper">
         <div class="flex justify-center">
-            <div class="header__ads w-10/12 p-2 max-h-min mb-10 mt-10 bg-black text-white">
-                <p>HEADER IKLAN</p>
+            <div class="header__ads w-10/12 p-2 h-12 md:mb-44 mb-64 mt-8 text-black">
+                <script async src="https://pagead2.googlesyndication.com/pagead/>
+                crossorigin=" anonymous"></script>
+                <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
+                    data-ad-format="fluid" data-ad-client="ca-pub-8107901415702789" data-ad-slot="8577889011"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+
+                </script>
             </div>
         </div>
         <div class="parent_grid grid lg:grid-cols-3 grid-cols-1 sm:gap-0 gap-5">
             <div class="left_item flex justify-center lg:col-span-2">
                 <div
-                    class="w-11/12 rounded-md p-2 bg-white/100 border border-gray-400 shadow-md text-gray-700 dark:text-gray-50  font-sans leading-loose dark:bg-gray-700 dark:shadow-xl dark:shadow-gray-600 unreset">
+                    class="w-11/12 mb-10 rounded-md p-2 bg-white/100 border border-gray-400 shadow-md text-gray-700 dark:text-gray-50  font-sans leading-loose dark:bg-gray-700 dark:shadow-xl dark:shadow-gray-600 unreset">
                     <div class="mt-3 mb-3 bg-gray-300 rounded-lg p-2 flex justify-center" id="badge-penunjuk">
                         <div class="inline-flex items-center space-x-1 ">
                             <div class="inline-flex items-center list-none">
@@ -79,19 +86,21 @@
                         </div>
 
                     </div>
-                    <div class="img_post w-full max-h-96 mb-5 mt-8">
-                        <img src="{{ asset('storage/public/post-images/' . $post->image) }}" class="rounded-md"
-                            alt="{{ $post->image  }}">
+                    <div class="img_post mb-5 mt-8">
+                        <img src="{{ asset('storage/public/post-images/' . $post->image) }}"
+                            class="rounded-md w-full max-h-96" alt="{{ $post->image  }}">
                     </div>
-                    <script async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8107901415702789"
-                        crossorigin="anonymous"></script>
-                    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
-                        data-ad-format="fluid" data-ad-client="ca-pub-8107901415702789" data-ad-slot="8577889011"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    <div class="ads_article w-full mt-3">
+                        <script async
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8107901415702789"
+                            crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
+                            data-ad-format="fluid" data-ad-client="ca-pub-8107901415702789" data-ad-slot="8577889011"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
 
-                    </script>
+                        </script>
+                    </div>
                     <article class="text-gray-800 dark:text-white">{!! $post->body !!}</article>
                     <div class="bg-gray-50 dark:bg-gray-600 rounded-lg shadow-lg shadow-gray-400 dark:shadow-lg dark:shadow-gray-600 mb-3"
                         id="profile_card">
@@ -129,6 +138,18 @@
                 </div>
                 @endforeach
                 <div class="mt-8">
+                    <script async
+                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8107901415702789"
+                        crossorigin="anonymous"></script>
+                    <!-- Sidebar iklan -->
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8107901415702789"
+                        data-ad-slot="4167582702" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+
+                    </script>
+                </div>
+                <div class="mt-3">
                     <script async
                         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8107901415702789"
                         crossorigin="anonymous"></script>
